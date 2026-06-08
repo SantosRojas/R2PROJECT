@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../../app/Livewire/**/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+    :root {
+        --color-primary: #2563eb;
+        --color-secondary: #1e40af;
+        --color-accent: #f59e0b;
+    }
+
+    ::selection {
+        background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+    }
+
+    .dark ::selection {
+        background-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+    }
+}
+
+@layer components {
+    .link-primary {
+        color: var(--color-primary);
+    }
+    .link-primary:hover {
+        opacity: 0.8;
+    }
+}

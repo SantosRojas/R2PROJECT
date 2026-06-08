@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Database\Factories\ContactFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+#[Fillable(['name', 'email', 'phone', 'company', 'message', 'read_at'])]
+class Contact extends Model
+{
+    /** @use HasFactory<ContactFactory> */
+    use HasFactory;
+
+    protected function casts(): array
+    {
+        return [
+            'read_at' => 'datetime',
+        ];
+    }
+
+    public function scopeUnread($query)
+    {
+        return $query->whereNull('read_at');
+    }
+
+    public function markAsRead(): void
+    {
+        $this->update(['read_at' => now()]);
+    }
+}
