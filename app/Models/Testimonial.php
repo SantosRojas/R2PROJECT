@@ -35,6 +35,6 @@ class Testimonial extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('avatar')->singleFile();
+        $this->addMediaCollection('avatar')->useDisk('public')->singleFile();
     }
 }
